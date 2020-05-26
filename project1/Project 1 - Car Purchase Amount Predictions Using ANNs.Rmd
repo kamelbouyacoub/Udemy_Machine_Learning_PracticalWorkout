@@ -1,0 +1,76 @@
+---
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.4.2
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+---
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+```{python}
+car_df = pd.read_csv('Car_Purchasing_Data.csv', encoding = 'ISO-8859-1')
+```
+
+```{python}
+car_df.head(10)
+```
+
+```{python}
+car_df.tail(5)
+```
+
+```{python}
+sns.pairplot(car_df)
+```
+
+## Step 2 visualize DataSet
+
+```{python}
+X = car_df.drop(['Customer Name', 'Customer e-mail', 'Country', 'Car Purchase Amount'], axis =1)
+```
+
+```{python}
+X
+```
+
+```{python}
+y = car_df['Car Purchase Amount']
+```
+
+```{python}
+y
+```
+
+```{python}
+X.shape
+```
+
+```{python}
+y.shape
+```
+
+```{python}
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+X_scaled = scaler.fit_transform(X)
+```
+
+```{python}
+X_scaled
+```
+
+```{python}
+
+```

@@ -68,7 +68,82 @@ X_scaled = scaler.fit_transform(X)
 ```
 
 ```{python}
+scaler.data_max_
+```
+
+```{python}
+scaler.data_min_
+```
+
+```{python}
 X_scaled
+```
+
+```{python}
+y = y.values.reshape(- 1, 1)
+```
+
+```{python}
+y_scaled = scaler.fit_transform(y)
+```
+
+```{python}
+y_scaled
+```
+
+## STEP4: Training the model
+
+```{python}
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_scaled)
+```
+
+```{python}
+X_scaled.shape
+
+```
+
+```{python}
+X_train.shape
+```
+
+```{python active="", eval=FALSE}
+
+```
+
+```{python}
+X_test.shape
+```
+
+```{python}
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y_scaled, test_size = 0.15 )
+```
+
+```{python}
+X_train.shape
+```
+
+```{python}
+import tensorflow.keras
+from keras.models import Sequential
+from keras.layers import Dense
+
+model = Sequential()
+model.add(Dense(40, input_dim = 5, activation = 'relu'))
+model.add(Dense(40, activation = 'relu'))
+model.add(Dense(1, activation = 'linear')) 
+```
+
+```{python}
+model.summary()
+```
+
+```{python}
+model.compile(optimizer = 'adam', loss = 'mean_squared_error')
+```
+
+```{python}
+epochs_hist = model.fit(X_train, y_train, epochs= 100, batch_size= 75, verbose= 1, validation_split=0.2)
 ```
 
 ```{python}
